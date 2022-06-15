@@ -28,7 +28,8 @@
             vertexOutput vert(vertexInput v){
                 vertexOutput o;
                 o.pos = UnityObjectToClipPos(v.vertex);
-                fixed3 worldNormal = normalize(mul(v.normal,(float3x3)unity_WorldToObject));
+               // fixed3 worldNormal = normalize(mul(v.normal,(float3x3)unity_WorldToObject));
+               fixed3 worldNormal = UnityObjectToWorldDir(v.normal);
                 fixed3 worldLight = normalize(_WorldSpaceLightPos0.xyz);
                 fixed3 diffuse =_LightColor0.rgb * _Color.rgb * saturate(dot(worldNormal,worldLight));
                 o.color = diffuse;
