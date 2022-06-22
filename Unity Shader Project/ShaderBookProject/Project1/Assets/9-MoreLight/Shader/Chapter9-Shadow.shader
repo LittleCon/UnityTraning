@@ -25,6 +25,7 @@ Shader "Unity Shaders Book/Chapter 9/Shadow" {
 			
 			// Need these files to get built-in macros
 			#include "Lighting.cginc"
+			//包含了一些内置宏
 			#include "AutoLight.cginc"
 			
 			fixed4 _Diffuse;
@@ -40,6 +41,10 @@ Shader "Unity Shaders Book/Chapter 9/Shadow" {
 				float4 pos : SV_POSITION;
 				float3 worldNormal : TEXCOORD0;
 				float3 worldPos : TEXCOORD1;
+				//内置宏
+				//用于对阴影纹理采样的坐标。
+				//参数是下一个可用的插值寄存器的索引值
+				//相当于float4 _ShadowCoord : TEXCOORD2
 				SHADOW_COORDS(2)
 			};
 			
@@ -51,7 +56,7 @@ Shader "Unity Shaders Book/Chapter 9/Shadow" {
 
 			 	o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 			 	
-			 	// Pass shadow coordinates to pixel shader
+			 	// 用于在顶点着色器中计算上一步中声明的阴影纹理坐标
 			 	TRANSFER_SHADOW(o);
 			 	
 			 	return o;

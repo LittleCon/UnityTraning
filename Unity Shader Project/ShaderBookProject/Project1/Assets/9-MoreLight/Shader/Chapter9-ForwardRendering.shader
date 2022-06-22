@@ -71,7 +71,7 @@ Shader "Unity Shaders Book/Chapter 9/Forward Rendering" {
 			
 			ENDCG
 		}
-	
+	//addtional Pass
 		Pass {
 			// Pass for other pixel lights
 			Tags { "LightMode"="ForwardAdd" }
